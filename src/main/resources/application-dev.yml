@@ -1,0 +1,32 @@
+spring:
+  security:
+    user:
+      name:
+      password:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhosh:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: Fleet2011@DB.
+    hikari:
+      minimum-idle: 10
+      idle-timeout: 180000
+      maximum-pool-size: 30
+      auto-commit: true
+      pool-name: dingli-hikari
+      max-lifetime: 1800000
+      connection-timeout: 30000
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+  boot:
+    admin:
+      client:
+        url: http://${spring.security.user.name}:${spring.security.user.password}@localhosh:15101
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@eureka-two:8762/eureka/, http://${spring.security.user.name}:${spring.security.user.password}@eureka-one:8761/eureka/
+    healthcheck:
+      enabled: true
+
